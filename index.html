@@ -194,22 +194,28 @@
 
           <fieldset>
             <legend>Axe a attaquer en priorite</legend>
-            <label>
-              Quel chantier voulez-vous ouvrir en premier ?
-              <select name="improvementAxis">
-                <option value="">Choisir apres lecture des resultats</option>
-                <option value="materials">Matiere / formulation : viser 80-85% du cout total</option>
-                <option value="inbound">Logistique amont MP : viser 3-6%</option>
-                <option value="process">Process usine : viser 4-8%</option>
-                <option value="distribution">Distribution aliment fini : viser 2-5%</option>
-                <option value="losses">Pertes, shrinkage, rework : viser 0,5-2%</option>
-                <option value="margin">Marge commerciale : viser 2-5%</option>
-                <option value="data">Fiabilisation des donnees de cout</option>
-              </select>
-            </label>
+            <p class="choice-label">Sur quel axe voulez-vous que TOPOLIS optimise en premier ?</p>
+            <div class="chips">
+              <label>
+                <input type="radio" name="improvementAxis" value="purchase-formulation-quality" />
+                1. Achat / Formulation / Qualite
+              </label>
+              <label>
+                <input type="radio" name="improvementAxis" value="process" />
+                2. Process
+              </label>
+              <label>
+                <input type="radio" name="improvementAxis" value="logistics" />
+                3. Logistiques
+              </label>
+              <label>
+                <input type="radio" name="improvementAxis" value="other" />
+                4. Autres
+              </label>
+            </div>
             <p class="hint">
-              Le benchmark sert a choisir un axe concret : achat/formulation, logistique,
-              usine, distribution, pertes ou marge.
+              TOPOLIS utilisera ce choix pour orienter les priorites d'audit et les actions
+              d'optimisation.
             </p>
           </fieldset>
 

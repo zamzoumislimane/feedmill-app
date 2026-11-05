@@ -47,13 +47,14 @@ const addAlert = (messages, type, text) => {
 };
 
 const improvementAxes = {
-  materials: "Axe choisi : matiere / formulation. Verifier achats, substitutions, mise a jour prix et ecarts reel vs formule.",
-  inbound: "Axe choisi : logistique amont MP. Auditer transport, stockage, distance, dechargement et cout rendu usine.",
-  process: "Axe choisi : process usine. Travailler energie, debit, arrets, maintenance et organisation des series.",
-  distribution: "Axe choisi : distribution aliment fini. Mesurer cout camion, distance, remplissage, nettoyage et retours.",
-  losses: "Axe choisi : pertes / shrinkage / rework. Controler humidite, poussieres, fines, reprises et precision dosage.",
-  margin: "Axe choisi : marge commerciale. Comparer prix net, cout matiere vendue, remises et mix clients.",
-  data: "Axe choisi : fiabilisation donnees. Priorite a la qualite des bases de cout avant decision industrielle.",
+  "purchase-formulation-quality":
+    "Axe choisi : Achat / Formulation / Qualite. TOPOLIS optimisera les achats, substitutions, prix rendu usine, qualite MP et ecarts formule vs reel.",
+  process:
+    "Axe choisi : Process. TOPOLIS optimisera energie, debit, arrets, maintenance, rendement ligne et organisation des series.",
+  logistics:
+    "Axe choisi : Logistiques. TOPOLIS optimisera logistique amont MP, stockage, distribution aliment fini, remplissage camion et distances.",
+  other:
+    "Axe choisi : Autres. TOPOLIS proposera d'abord une fiabilisation des donnees, puis isolera les pertes, rework, marge ou points hors standard.",
 };
 
 const getCalendarHours = (monthValue) => {
