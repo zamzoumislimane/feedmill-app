@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TOPOLIS FeedMill</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">TOPOLIS FeedMill</p>
+        <h1>Prediagnostic des usines d'aliments</h1>
+        <p class="lead">
+          Collecte mensuelle, couts de fabrication, performances et priorites
+          d'audit en une fiche simple.
+        </p>
+      </div>
+      <div class="hero-card">
+        <span class="label">Version pilote</span>
+        <strong>Formulaire 5 minutes</strong>
+        <small>Site + mois cloture + indicateurs calculables</small>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel form-panel">
+        <div class="section-title">
+          <span>1</span>
+          <div>
+            <h2>Fiche mensuelle</h2>
+            <p>Une fiche correspond a une usine et un mois cloture.</p>
+          </div>
+        </div>
+
+        <form id="feedmill-form">
+          <fieldset>
+            <legend>Site et production</legend>
+            <div class="grid two">
+              <label>
+                Usine *
+                <input name="site" required placeholder="Ex. Usine Casablanca" />
+              </label>
+              <label>
+                Mois cloture *
+                <input name="month" type="month" required />
+              </label>
+              <label>
+                Famille dominante *
+                <select name="family" required>
+                  <option value="">Choisir</option>
+                  <option>Volaille</option>
+                  <option>Ruminants</option>
+                  <option>Autres</option>
+                  <option>Mixte / a preciser</option>
+                </select>
+              </label>
+              <label>
+                Tonnes conformes fabriquees *
+                <input name="productionTons" type="number" min="0" step="0.01" required />
+              </label>
+            </div>
+            <div class="chips">
+              <label><input type="checkbox" name="forms" value="Farine" /> Farine</label>
+              <label><input type="checkbox" name="forms" value="Granules" /> Granules</label>
+              <label><input type="checkbox" name="forms" value="Miettes" /> Miettes</label>
+              <label><input type="checkbox" name="forms" value="Autres" /> Autres</label>
+            </div>
+            <label>
+              Part granules + miettes (%)
+              <input name="pelletShare" type="number" min="0" max="100" step="0.1" />
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Matieres premieres et formulation</legend>
+            <div class="grid two">
+              <label>
+                Cout matiere moyen
+                <input name="materialCost" type="number" min="0" step="0.01" placeholder="MAD HT/t" />
+              </label>
+              <label>
+                Base du cout matiere
+                <select name="materialBasis">
+                  <option value="">Non disponible</option>
+                  <option>Formule theorique</option>
+                  <option>Reel consomme</option>
+                </select>
+              </label>
+              <label>
+                Actualisation des prix
+                <select name="priceUpdate">
+                  <option>Non suivi</option>
+                  <option>A chaque changement significatif</option>
+                  <option>Chaque semaine</option>
+                  <option>Chaque mois</option>
+                  <option>Moins souvent</option>
+                </select>
+              </label>
+              <label>
+                Source
+                <select name="materialSource">
+                  <option>Documente</option>
+                  <option>Estime</option>
+                  <option>A verifier</option>
+                </select>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Achats</legend>
+            <div class="grid three">
+              <label>Matiere cle <input name="purchaseItem" placeholder="Mais, soja..." /></label>
+              <label>Grade <input name="purchaseGrade" placeholder="Qualite / origine" /></label>
+              <label>Prix rendu usine <input name="purchasePrice" type="number" min="0" step="0.01" placeholder="MAD HT/t" /></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Energie</legend>
+            <div class="grid three">
+              <label>Electricite <input name="kwh" type="number" min="0" step="0.01" placeholder="kWh" /></label>
+              <label>Cout electricite <input name="electricCost" type="number" min="0" step="0.01" placeholder="MAD HT" /></label>
+              <label>
+                Perimetre compteur
+                <select name="meterScope">
+                  <option>Fabrication seule</option>
+                  <option>Compteur partage</option>
+                </select>
+              </label>
+              <label>
+                Energie thermique
+                <select name="thermalStatus">
+                  <option>Non</option>
+                  <option>Oui</option>
+                  <option>Inconnu</option>
+                </select>
+              </label>
+              <label>Cout thermique <input name="thermalCost" type="number" min="0" step="0.01" placeholder="MAD HT" /></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Main-d'oeuvre</legend>
+            <div class="grid two">
+              <label>Cout employeur <input name="laborCost" type="number" min="0" step="0.01" placeholder="MAD/mois" /></label>
+              <label>Heures-personnes <input name="laborHours" type="number" min="0" step="0.01" placeholder="h" /></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Debit et arrets</legend>
+            <div class="grid three">
+              <label>Ligne suivie <input name="lineName" placeholder="Ligne 1" /></label>
+              <label>Tonnes ligne <input name="lineTons" type="number" min="0" step="0.01" /></label>
+              <label>Heures marche <input name="lineHours" type="number" min="0" step="0.01" /></label>
+            </div>
+            <div class="chips">
+              <label><input type="checkbox" name="bottlenecks" value="Broyage" /> Broyage</label>
+              <label><input type="checkbox" name="bottlenecks" value="Dosage / melange" /> Dosage / melange</label>
+              <label><input type="checkbox" name="bottlenecks" value="Granulation" /> Granulation</label>
+              <label><input type="checkbox" name="bottlenecks" value="Refroidissement" /> Refroidissement</label>
+              <label><input type="checkbox" name="bottlenecks" value="Ensachage" /> Ensachage</label>
+              <label><input type="checkbox" name="bottlenecks" value="Pannes" /> Pannes</label>
+              <label><input type="checkbox" name="bottlenecks" value="Changements de serie" /> Changements</label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Ventes et marge</legend>
+            <div class="grid three">
+              <label>Tonnes vendues <input name="soldTons" type="number" min="0" step="0.01" /></label>
+              <label>CA net HT <input name="revenue" type="number" min="0" step="0.01" placeholder="MAD" /></label>
+              <label>Cout matiere vendue <input name="soldMaterialCost" type="number" min="0" step="0.01" placeholder="MAD HT/t" /></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Performance client</legend>
+            <div class="chips">
+              <label><input type="checkbox" name="clientMetrics" value="Indice de consommation" /> Indice de consommation</label>
+              <label><input type="checkbox" name="clientMetrics" value="Gain de poids" /> Gain de poids</label>
+              <label><input type="checkbox" name="clientMetrics" value="Mortalite" /> Mortalite</label>
+              <label><input type="checkbox" name="clientMetrics" value="Lait" /> Lait</label>
+              <label><input type="checkbox" name="clientMetrics" value="Reclamations" /> Reclamations</label>
+            </div>
+            <div class="grid three">
+              <label>IC recent <input name="feedConversion" type="number" min="0" step="0.001" placeholder="kg/kg" /></label>
+              <label>Age fin <input name="endAge" type="number" min="0" step="1" placeholder="jours" /></label>
+              <label>Nombre de lots <input name="batchCount" type="number" min="0" step="1" /></label>
+            </div>
+          </fieldset>
+
+          <div class="actions">
+            <button type="submit">Calculer la synthese</button>
+            <button type="button" id="reset-button" class="secondary">Reinitialiser</button>
+          </div>
+        </form>
+      </section>
+
+      <aside class="panel sticky">
+        <div class="section-title">
+          <span>2</span>
+          <div>
+            <h2>Synthese automatique</h2>
+            <p>Les indicateurs se calculent avec les donnees disponibles.</p>
+          </div>
+        </div>
+        <div id="alerts" class="alerts"></div>
+        <div id="summary" class="summary-grid"></div>
+        <div class="benchmark">
+          <h3>Priorites d'audit</h3>
+          <ol id="priorities">
+            <li>Renseignez une fiche pour obtenir les priorites.</li>
+          </ol>
+        </div>
+      </aside>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
