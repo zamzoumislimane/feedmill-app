@@ -192,6 +192,27 @@
             </div>
           </fieldset>
 
+          <fieldset>
+            <legend>Axe a attaquer en priorite</legend>
+            <label>
+              Quel chantier voulez-vous ouvrir en premier ?
+              <select name="improvementAxis">
+                <option value="">Choisir apres lecture des resultats</option>
+                <option value="materials">Matiere / formulation : viser 80-85% du cout total</option>
+                <option value="inbound">Logistique amont MP : viser 3-6%</option>
+                <option value="process">Process usine : viser 4-8%</option>
+                <option value="distribution">Distribution aliment fini : viser 2-5%</option>
+                <option value="losses">Pertes, shrinkage, rework : viser 0,5-2%</option>
+                <option value="margin">Marge commerciale : viser 2-5%</option>
+                <option value="data">Fiabilisation des donnees de cout</option>
+              </select>
+            </label>
+            <p class="hint">
+              Le benchmark sert a choisir un axe concret : achat/formulation, logistique,
+              usine, distribution, pertes ou marge.
+            </p>
+          </fieldset>
+
           <div class="actions">
             <button type="submit">Calculer la synthese</button>
             <button type="button" id="reset-button" class="secondary">Reinitialiser</button>
@@ -209,6 +230,18 @@
         </div>
         <div id="alerts" class="alerts"></div>
         <div id="summary" class="summary-grid"></div>
+        <div class="benchmark">
+          <h3>Benchmark structure de cout</h3>
+          <p class="benchmark-note">Plages de reference sur une base 100% du cout/prix final.</p>
+          <div class="range-list">
+            <div><strong>80-85%</strong><span>Matiere / formulation</span></div>
+            <div><strong>3-6%</strong><span>Logistique amont MP</span></div>
+            <div><strong>4-8%</strong><span>Process usine</span></div>
+            <div><strong>2-5%</strong><span>Distribution</span></div>
+            <div><strong>0,5-2%</strong><span>Pertes / rework</span></div>
+            <div><strong>2-5%</strong><span>Marge</span></div>
+          </div>
+        </div>
         <div class="benchmark">
           <h3>Priorites d'audit</h3>
           <ol id="priorities">

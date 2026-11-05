@@ -46,6 +46,16 @@ const addAlert = (messages, type, text) => {
   messages.push(`<p class="${type}">${text}</p>`);
 };
 
+const improvementAxes = {
+  materials: "Axe choisi : matiere / formulation. Verifier achats, substitutions, mise a jour prix et ecarts reel vs formule.",
+  inbound: "Axe choisi : logistique amont MP. Auditer transport, stockage, distance, dechargement et cout rendu usine.",
+  process: "Axe choisi : process usine. Travailler energie, debit, arrets, maintenance et organisation des series.",
+  distribution: "Axe choisi : distribution aliment fini. Mesurer cout camion, distance, remplissage, nettoyage et retours.",
+  losses: "Axe choisi : pertes / shrinkage / rework. Controler humidite, poussieres, fines, reprises et precision dosage.",
+  margin: "Axe choisi : marge commerciale. Comparer prix net, cout matiere vendue, remises et mix clients.",
+  data: "Axe choisi : fiabilisation donnees. Priorite a la qualite des bases de cout avant decision industrielle.",
+};
+
 const getCalendarHours = (monthValue) => {
   if (!monthValue) return null;
   const [year, month] = monthValue.split("-").map(Number);
@@ -77,6 +87,7 @@ const calculate = () => {
   const calendarHours = getCalendarHours(month);
   const thermalStatus = data.get("thermalStatus");
   const meterScope = data.get("meterScope");
+  const improvementAxis = data.get("improvementAxis");
 
   const totalEnergyCost =
     electricCost === null && thermalCost === null
@@ -222,6 +233,9 @@ const calculate = () => {
   ].join("");
 
   const priorityList = [];
+  if (improvementAxis && improvementAxes[improvementAxis]) {
+    priorityList.push(improvementAxes[improvementAxis]);
+  }
   if (metrics.electricityIntensity > comparableMedian.electricityIntensity && meterScope === "Fabrication seule") {
     const excess = (metrics.electricityIntensity - comparableMedian.electricityIntensity) * productionTons;
     priorityList.push(`Verifier energie : +${formatNumber(metrics.electricityIntensity - comparableMedian.electricityIntensity)} kWh/t vs mediane pilote, soit ${formatNumber(excess, 0)} kWh a investiguer.`);
