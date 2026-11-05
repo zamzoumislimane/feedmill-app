@@ -88,7 +88,7 @@ const calculate = () => {
   const calendarHours = getCalendarHours(month);
   const thermalStatus = data.get("thermalStatus");
   const meterScope = data.get("meterScope");
-  const improvementAxis = data.get("improvementAxis");
+  const selectedImprovementAxes = checkedValues("improvementAxes");
 
   const totalEnergyCost =
     electricCost === null && thermalCost === null
@@ -234,9 +234,11 @@ const calculate = () => {
   ].join("");
 
   const priorityList = [];
-  if (improvementAxis && improvementAxes[improvementAxis]) {
-    priorityList.push(improvementAxes[improvementAxis]);
-  }
+  selectedImprovementAxes.forEach((axis) => {
+    if (improvementAxes[axis]) {
+      priorityList.push(improvementAxes[axis]);
+    }
+  });
   if (metrics.electricityIntensity > comparableMedian.electricityIntensity && meterScope === "Fabrication seule") {
     const excess = (metrics.electricityIntensity - comparableMedian.electricityIntensity) * productionTons;
     priorityList.push(`Verifier energie : +${formatNumber(metrics.electricityIntensity - comparableMedian.electricityIntensity)} kWh/t vs mediane pilote, soit ${formatNumber(excess, 0)} kWh a investiguer.`);
