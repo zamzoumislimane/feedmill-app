@@ -108,7 +108,7 @@ const calculate = () => {
       divide(revenue, soldTons) !== null && soldMaterialCost !== null
         ? divide(revenue, soldTons) - soldMaterialCost
         : null,
-    partialIndustrialCost:
+    producedTonCost:
       materialCost !== null && divide(totalEnergyCost, productionTons) !== null && divide(laborCost, productionTons) !== null
         ? materialCost + divide(totalEnergyCost, productionTons) + divide(laborCost, productionTons)
         : null,
@@ -220,10 +220,10 @@ const calculate = () => {
       status: metrics.marginGap !== null && metrics.marginGap < comparableMedian.marginGap ? "watch" : "ok",
     }),
     makeCard({
-      title: "Cout industriel partiel",
-      value: metrics.partialIndustrialCost === null ? "-" : formatNumber(metrics.partialIndustrialCost),
-      unit: "MAD/t fabriquee",
-      detail: "matiere + energie + MO",
+      title: "Cout d'une tonne produite",
+      value: metrics.producedTonCost === null ? "-" : formatNumber(metrics.producedTonCost),
+      unit: "MAD/t produite",
+      detail: "matiere + energie + main-d'oeuvre",
     }),
     makeCard({
       title: "Performance client",
